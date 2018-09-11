@@ -1,5 +1,7 @@
 package com.acg.inventory.dl.service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +60,10 @@ public class UnitOfMeasurementService implements IUnitOfMeasurement {
 		unitOfMeasurementDb.get().setName(unitOfMeasurement.getName());
 		unitOfMeasurementRepository.save(unitOfMeasurementDb.get());
 		return true;
+	}
+
+	@Override
+	public List<UnitOfMeasurement> get() throws UnitOfMeasurementException {
+		return Collections.unmodifiableList(unitOfMeasurementRepository.findAll());
 	}
 }
